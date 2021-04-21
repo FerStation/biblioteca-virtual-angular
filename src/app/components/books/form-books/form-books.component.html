@@ -1,0 +1,115 @@
+<div class="container">
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb m-2 bg-white">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a href="books">Livros Cadastrados</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{pageTitle}}</li>
+    </ol>
+  </nav>
+
+  <div class="card shadow">
+    <div class="card-header bg-light">
+      <h1 class="my-3">
+        {{pageTitle}}
+      </h1>
+    </div>
+
+    <div class="card-body">
+      <form>
+        <div class="row">
+          <div class="col-12 col-md-4 h-100 my-auto">
+            <div *ngIf="book.photoURL === null ; else elseBlock">
+              <img src="assets/img/book-icon.png" onerror="this.src='assets/img/book-icon.png'" alt="capa do livro" class=" img-fluid mx-auto align-middle">
+            </div>
+            <ng-template #elseBlock>
+              <img [src]="book.photoURL" onerror="this.src='assets/img/book-icon.png'" alt="capa do livro" class=" img-fluid mx-auto align-middle">
+            </ng-template>
+          </div>
+          <div class="col-12 col-md-8">
+            <!--photo link -->
+            <div class="form-group">
+              <label for="nome">Link da capa</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-picture-o" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <input id="photoURL" name="photoURL" [(ngModel)]="book.photoURL" placeholder="Cole aqui o link com a capa do livro" type="url" required="required" class="form-control">
+              </div>
+            </div>
+
+            <!-- book title -->
+            <div class="form-group">
+              <label for="nome">Titulo</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <input id="title" name="title" [(ngModel)]="book.title" placeholder="Digite o titulo do livro" type="text" ngModel required class="form-control">
+              </div>
+            </div>
+
+            <!-- book author -->
+            <div class="form-group">
+              <label for="nome">Autor</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-address-card"></i>
+                  </div>
+                </div>
+                <input id="author" name="author" [(ngModel)]="book.author" placeholder="Digite o nome do autor do livro" type="text" required="required" class="form-control">
+              </div>
+            </div>
+
+            <!--Release date -->
+            <div class="form-group">
+              <label for="validade">Ano do lançamento</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-calendar-check-o"></i>
+                  </div>
+                </div>
+                <input id="releaseYear" name="releaseYear" [(ngModel)]="book.releaseYear" type="number" class="form-control" placeholder="Digite o ano de lançamento, exemplo: 1992">
+              </div>
+            </div>
+
+            <!-- book link -->
+            <div class="form-group">
+              <label for="nome">Link do livro</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-link" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <input id="bookUrl" name="bookUrl" [(ngModel)]="book.url" placeholder="Coloque o link do livro aqui" type="url" required="required" class="form-control">
+              </div>
+            </div>
+
+            <!-- book description -->
+            <div class="form-group">
+              <label for="nome">Descrição</label>
+              <div class="input-group">
+                <textarea id="description" name="description" [(ngModel)]="book.description" placeholder="Digite a descrição do livro aqui" required="required" class="form-control" ></textarea>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-group float-right">
+          <button class="btn btn-primary mr-2" (click)="clearForm()">Limpar</button>
+          <button class="btn btn-primary" (click)="saveBook()">Salvar</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+</div>

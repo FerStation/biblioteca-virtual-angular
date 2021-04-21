@@ -1,0 +1,43 @@
+<div class="container">
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb m-2 bg-white">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a href="books">Livros Cadastrados</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Detalhes do Livro</li>
+    </ol>
+  </nav>
+
+  <div class="card shadow">
+    <div class="card-header bg-light">
+      <h1 class="my-3">
+        Detalhes do Livro
+      </h1>
+    </div>
+
+    <div class="card-body d-flex flex-column">
+      <div class="row">
+        <div class="col-12 col-md-4 h-100 my-auto text-center">
+          <div *ngIf="book.photoURL === null ; else elseBlock">
+            <img src="assets/img/book-icon.png" onerror="this.src='assets/img/book-icon.png'" alt="capa do livro"
+              class=" img-fluid mx-auto align-middle">
+          </div>
+          <ng-template #elseBlock>
+            <img [src]="book.photoURL" onerror="this.src='assets/img/book-icon.png'" alt="capa do livro"
+              class=" img-fluid mx-auto align-middle">
+          </ng-template>
+        </div>
+        <div class="col-12 col-md-8  d-flex flex-column">
+
+          <h2>{{book.title}}</h2>
+          <p class="lead">{{book.author}}</p>
+          <p class="small"><strong>Ano de lançamento: </strong> {{book.releaseYear}}</p>
+          <div class="overflow-auto" style="height: 300px;">{{book.description}}</div>
+
+          <a class="btn btn-primary btn-lg btn-block mt-auto" [href]="book.url" target="_blank">Ler Agora</a>
+
+        </div>
+      </div><!-- row -->
+    </div><!-- card-body -->
+  </div><!-- card -->
+</div><!-- container -->

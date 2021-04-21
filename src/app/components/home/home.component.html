@@ -1,0 +1,30 @@
+<header id="jumbotron" class="jumbotron jumbotron-fluid text-center text-white">
+  <h1>📚📚📚</h1>
+  <h1 class="display-4">Seja bem vindo a Biblioteca Virtual</h1>
+  <p class="lead">Aqui você encontra uma variedade de livros gratuitos!! Uma ótima leitura <br> *Todos estão disponíveis nesse site são de  domínio publico</p>
+  <br>
+  <figure class="text-center text-white">
+    <blockquote class="blockquote">
+      <p>Quem mal lê, mal ouve, mal fala, mal vê</p>
+    </blockquote>
+    <figcaption class="blockquote-footer text-white">
+      <cite title="Source Title">Monteiro Lobato</cite>
+    </figcaption>
+  </figure>
+</header>
+
+<div id="catalog" class="container">
+  <h1>📚 Catálogo de livros</h1>
+  <hr>
+  <div class="row justify-content-center">
+    <div *ngIf="books.length === 0" class="text-center mt-4">
+      <h1><i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+        Nenhum livro cadastrado</h1>
+      <p class="lead">começe cadastrando o seu primeiro livro <a href="/books/new">aqui</a></p>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-1 d-flex align-items-stretch mt-4 justify-content-center" *ngFor="let book of books">
+      <app-card-book [book]="book"></app-card-book>
+    </div>
+  </div>
+</div>
